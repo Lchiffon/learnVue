@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<div id="app-5">
+  <p>{{message}}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app-5',
+    data: {
+      message: 'Hello Vue.js!'
+    },
+    methods:{
+      reverseMessage: function(){
+        this.message = this.message.split("").reverse().join("")
+      }
+    }
+  })
+</script>
+<br/>
+<div id="app-6">
+  <p>{{message}}</p>
+  <input v-model="message">
+</div>
+<script>
+  var app6 = new Vue({
+    el: "#app-6",
+    data: {
+      message: "Hello Vue~"
+    }
+  })
+</script>
+<br/>
+<div id="app-7">
+  <ol>
+    <tool-set v-for="a in todoList" v-bind:todo="a"></tool-set>
+  </ol>
+</div>
+<script>
+Vue.component("tool-set",{
+  props:['todo'],
+  template:'<li>{{todo.text}}</li>'
+})
+var app7 = new Vue({
+  el:"#app-7",
+  data: {
+    todoList: [
+      {text: "No.1"},
+      {text: "No.2"},
+      {text: "No.3"}
+    ]
+  }
+})
+</script>
+
+</body>
