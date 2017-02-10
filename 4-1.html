@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<div id="example">
+  <p>Original message: "{{message}}"</p>
+  <p>Comupted reversed message: "{{reversedMessage}}"</p>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#example',
+    data: {message:"This is a message"},
+    computed: {
+      reversedMessage: function(){
+        return this.message.split("").reverse().join("")
+      }
+    }
+  })
+</script>
+</body>

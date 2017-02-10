@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<div id="template1">
+  <div v-if="loginType==='username'">
+    <label>Username</label><br/>
+    <input placeholder="Enter your username"><br/>
+    <!-- <input placeholder="Enter your username" key="1"> -->
+  </div>
+  <div v-else>
+    <label>Email</label><br/>
+    <input placeholder="Enter your Email"><br/>
+    <!-- <input placeholder="Enter your Email" key = "2"> -->
+  </div>
+</div>
+<button type="button" id="button1" v-bind:value="text" v-on:click="change">Change Type</button>
+<script>
+  var vm = new Vue({
+    el: '#template1',
+    data:{
+      loginType:'username'
+    }
+  })
+
+  var vm2 = new Vue({
+    el: '#button1',
+    data: {
+      name: 'username',
+      change: function(){
+        if(vm.loginType == "username"){
+          vm.loginType = "Email"
+        }else{
+          vm.loginType = "username"
+        }
+      }
+    },
+    computed:{
+      text: function(){
+        return "Enter your " + this.name
+      }
+    }
+  })
+</script>
+<br/>
+<ul id="ul1">
+  <ol v-for="item in items">
+    {{item.text}}
+  </ol>
+</ul>
+<script>
+  var vmUL1 = new Vue({
+    el: "#ul1",
+    data: {
+      items:[
+        {text:"123"},
+        {text:"456"},
+        {text:"789"}
+      ]
+    }
+  })
+</script>
+<br/>
+<ul id="ul2">
+  <ol v-for="(item, index) in items">
+    {{item.text}} === {{index}}
+  </ol>
+</ul>
+<script>
+  var vmUL2 = new Vue({
+    el: "#ul2",
+    data: {
+      items:[
+        {text:"123"},
+        {text:"456"},
+        {text:"789"}
+      ]
+    }
+  })
+</script>
+</body>
